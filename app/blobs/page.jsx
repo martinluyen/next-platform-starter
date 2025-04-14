@@ -1,58 +1,32 @@
-import { ShapeEditor } from './editor';
-import { ContextAlert } from 'components/context-alert';
-import { Markdown } from 'components/markdown';
-import { getNetlifyContext, uploadDisabled } from 'utils';
+import Head from 'next/head';
+import Header from '../../components/Header';
 
-export const metadata = {
-    title: 'Blobs'
-};
-
-const explainer = `
-[Netlify Blobs](https://docs.netlify.com/blobs/overview/) provides an object store for any kind of data, be it JSON, binary, 
-or [really](https://mk.gg/projects/chalkstream) anything else ([really!](https://mk.gg/projects/turbofan)). In this example, the blob store is used to **hold the data of user-generated random blobby shapes**.
-
-Using the blob store is basically zero-config. Below is a Next.js Server Action to upload data (see \`app/blobs/actions.js\`). 
-When deployed to Netlify, the Server Action is run by serverless functions, and all context required for the blob service is set-up automatically.
-
-~~~js
-'use server';
-import { getStore } from '@netlify/blobs';
-
-// TODO: Always be sanitizing data in real sites!
-export async function uploadShape({ shapeData }) {
-    const blobStore = getStore('shapes');
-    const key = data.name;
-    await blobStore.setJSON(key, shapeData);
-}
-~~~
-
-Click "Randomize" to get a shape you like, then hit "Upload".
-Choose any existing object to view it.
-`;
-
-const uploadDisabledText = `
-User uploads are disabled in this site. To run your own and try it out: 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/next-platform-starter">
-<img src="https://www.netlify.com/img/deploy/button.svg" style="display: inline;" alt="Deploy to Netlify" />
-</a>
-`;
-
-export default async function Page() {
-    return (
-        <>
-            <ContextAlert
-                addedChecksFunction={(ctx) => {
-                    return uploadDisabled ? uploadDisabledText : null;
-                }}
-                className="mb-6"
-            />
-            <h1 className="mb-8">Blobs x Blobs</h1>
-            {!!getNetlifyContext() && (
-                <>
-                    <Markdown content={explainer} className="mb-12" />
-                    <ShapeEditor />
-                </>
-            )}
-        </>
-    );
+export default function News() {
+  return (
+    <div>
+      <Head>
+        <title>Kdeco - Tin tức</title>
+        <meta name="description" content="Cập nhật tin tức mới nhất từ Kdeco." />
+      </Head>
+      <Header />
+      <main className="container mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-4 text-[#2C4A89]">Tin tức</h1>
+        <p className="text-lg text-gray-700 mb-4">
+          Cập nhật các thông tin và sự kiện mới nhất từ Kdeco.
+        </p>
+        <div className="space-y-4">
+          <div className="border-b pb-4">
+            <h2 className="text-xl font-semibold text-[#2C4A89]">Kdeco hoàn thành dự án tại Bình Dương</h2>
+            <p className="text-gray-700">Chúng tôi vừa hoàn thành tư vấn pháp lý cho một dự án lớn tại Bình Dương, đảm bảo tuân thủ mọi quy định pháp luật.</p>
+            <p className="text-sm text-gray-500">Ngày đăng: 10/04/2025</p>
+          </div>
+          <div className="border-b pb-4">
+            <h2 className="text-xl font-semibold text-[#2C4A89]">Hội thảo về quản lý dự án hiệu quả</h2>
+            <p className="text-gray-700">Kdeco tổ chức hội thảo chia sẻ kinh nghiệm quản lý dự án tại TP. Hồ Chí Minh.</p>
+            <p className="text-sm text-gray-500">Ngày đăng: 05/04/2025</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }
