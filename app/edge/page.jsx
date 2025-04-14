@@ -1,25 +1,28 @@
-import { Markdown } from 'components/markdown';
+import Head from 'next/head';
+import Header from '../../components/Header';
 
-export const metadata = {
-    title: 'Fallback'
-};
-
-const explainer = `
-This page is using a [Netlify Edge Function](https://docs.netlify.com/edge-functions/overview/) to rewrite the URL based on visitor geography.
-
-For it to be invoked, please either run this site locally with \`netlify dev\` or deploy it to Netlify.
-
-Edge Functions are framework-agnostic, but are also used behind the scenes to run Next.js Middleware on Netlify.
-There are advatanges to using Edge Functions directly, such as the ability to access & transform the response body.
-
-[See more examples](https://edge-functions-examples.netlify.app)
-`;
-
-export default function FallbackPage() {
-    return (
-        <>
-            <h1 className="mb-8">You&apos;ve reached the fallback page.</h1>
-            <Markdown content={explainer} />
-        </>
-    );
+export default function Management() {
+  return (
+    <div>
+      <Head>
+        <title>Kdeco - Tư vấn quản lý dự án</title>
+        <meta name="description" content="Dịch vụ tư vấn quản lý dự án chuyên nghiệp từ Kdeco." />
+      </Head>
+      <Header />
+      <main className="container mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-4 text-[#2C4A89]">Tư vấn quản lý dự án</h1>
+        <p className="text-lg text-gray-700 mb-4">
+          Kdeco hỗ trợ quản lý dự án hiệu quả với các dịch vụ:
+        </p>
+        <ul className="list-disc list-inside text-lg text-gray-700 mb-6">
+          <li>Lập kế hoạch và quản lý tiến độ dự án.</li>
+          <li>Phối hợp giữa các bên liên quan để đảm bảo tính đồng bộ.</li>
+          <li>Kiểm soát chi phí và tối ưu hóa nguồn lực.</li>
+        </ul>
+        <p className="text-lg text-gray-700">
+          Đội ngũ của chúng tôi sẽ đồng hành cùng bạn để đảm bảo dự án thành công và hiệu quả.
+        </p>
+      </main>
+    </div>
+  );
 }
